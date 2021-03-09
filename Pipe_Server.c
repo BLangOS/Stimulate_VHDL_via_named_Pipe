@@ -12,17 +12,17 @@ int main(void) {
   DWORD dwWrite;
   printf("Pipe_Server\r\n");
   Pipe_C2VHD = CreateNamedPipe(TEXT("\\\\.\\pipe\\PipeA"),
-                          PIPE_ACCESS_DUPLEX, // PIPE_ACCESS_OUTBOUND, //
+                          PIPE_ACCESS_OUTBOUND, // PIPE_ACCESS_DUPLEX, //
                           PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,   // FILE_FLAG_FIRST_PIPE_INSTANCE is not needed but forces CreateNamedPipe(..) to fail if the pipe already exists...
-                          2,
+                          1,
                           1024 * 16,
                           1024 * 16,
                           NMPWAIT_USE_DEFAULT_WAIT,
                           NULL);
   Pipe_VHD2C = CreateNamedPipe(TEXT("\\\\.\\pipe\\PipeB"),
-                               PIPE_ACCESS_DUPLEX, // PIPE_ACCESS_OUTBOUND, //
+                               PIPE_ACCESS_INBOUND, //PIPE_ACCESS_DUPLEX, //
                                PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,   // FILE_FLAG_FIRST_PIPE_INSTANCE is not needed but forces CreateNamedPipe(..) to fail if the pipe already exists...
-                               2,
+                               1,
                                1024 * 16,
                                1024 * 16,
                                NMPWAIT_USE_DEFAULT_WAIT,
